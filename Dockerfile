@@ -60,7 +60,7 @@ RUN	curl -fsSLO --compressed --retry 3 --retry-delay 10 \
 	&& mkdir -p /data/opt/octoprint \
   && tar xzf ${octoprint_ref}.tar.gz --strip-components 1 -C /data/opt/octoprint --no-same-owner
 
-WORKDIR /data
+WORKDIR /data/opt/octoprint
 RUN pip install .
 RUN mkdir -p /data/octoprint/octoprint /data/octoprint/plugins /data/mjpg
 
