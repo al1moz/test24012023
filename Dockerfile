@@ -86,6 +86,6 @@ WORKDIR /octoprint
 # port to access haproxy frontend
 EXPOSE 80
 
-VOLUME /octoprint
+VOLUME /data
 
 ENTRYPOINT ["/init"]
