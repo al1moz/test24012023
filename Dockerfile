@@ -49,7 +49,7 @@ RUN apt-get update && apt-get install -y \
 
 # unpack s6
 COPY --from=s6build /data/tmp /data/tmp
-RUN s6tar=$(find /tmp -name "s6-overlay-*.tar.gz") \
+RUN s6tar=$(find /data/tmp -name "s6-overlay-*.tar.gz") \
   && tar xzf $s6tar -C / 
 
 # Install octoprint
