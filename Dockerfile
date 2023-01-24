@@ -5,7 +5,7 @@ ARG S6_RELEASE
 ENV S6_VERSION ${S6_RELEASE:-v2.1.0.0}
 RUN apt-get update && apt-get install -y curl
 RUN echo "$(dpkg --print-architecture)"
-WORKDIR /data/tmp
+WORKDIR /tmp
 RUN ARCH= && dpkgArch="$(dpkg --print-architecture)" \
   && case "${dpkgArch##*-}" in \
   amd64) ARCH='amd64';; \
@@ -48,7 +48,9 @@ RUN apt-get update && apt-get install -y \
   x265
 
 # unpack s6
-COPY --from=s6build /data/tmp /data/tmp
+RUN mkdir -p /data/tmp
+RUN echo "============ COPY s6 ============"
+COPY --from=s6build /tmp /data/tmp
 RUN s6tar=$(find /data/tmp -name "s6-overlay-*.tar.gz") \
   && tar xzf $s6tar -C / 
 
@@ -58,9 +60,9 @@ RUN	curl -fsSLO --compressed --retry 3 --retry-delay 10 \
 	&& mkdir -p /data/opt/octoprint \
   && tar xzf ${octoprint_ref}.tar.gz --strip-components 1 -C /data/opt/octoprint --no-same-owner
 
-WORKDIR /data/opt/octoprint
+WORKDIR /data
 RUN pip install .
-RUN mkdir -p /data/octoprint/octoprint /data/octoprint/plugins
+RUN mkdir -p /data/octoprint/octoprint /data/octoprint/plugins /data/mjpg
 
 # Install mjpg-streamer
 RUN curl -fsSLO --compressed --retry 3 --retry-delay 10 \
@@ -78,10 +80,10 @@ COPY root /data/
 ENV CAMERA_DEV /dev/video10
 ENV MJPG_STREAMER_INPUT -n -r 640x480
 ENV PIP_USER true
-ENV PYTHONUSERBASE /octoprint/plugins
+ENV PYTHONUSERBASE /data/octoprint/plugins
 ENV PATH "${PYTHONUSERBASE}/bin:${PATH}"
 # set WORKDIR 
-WORKDIR /data/octoprint
+WORKDIR /data
 
 # port to access haproxy frontend
 EXPOSE 80
