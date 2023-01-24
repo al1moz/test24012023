@@ -48,16 +48,14 @@ RUN apt-get update && apt-get install -y \
   x265
 
 # unpack s6
-RUN mkdir -p /data/tmp
-RUN echo "============ COPY s6 ============"
-COPY --from=s6build /tmp /data/tmp
-RUN s6tar=$(find /data/tmp -name "s6-overlay-*.tar.gz") \
+COPY --from=s6build /tmp /tmp
+RUN s6tar=$(find /tmp -name "s6-overlay-*.tar.gz") \
   && tar xzf $s6tar -C / 
 
 # Install octoprint
-RUN	curl -fsSLO --compressed --retry 3 --retry-delay 10 \
+RUN curl -fsSLO --compressed --retry 3 --retry-delay 10 \
   https://github.com/OctoPrint/OctoPrint/archive/${octoprint_ref}.tar.gz \
-	&& mkdir -p /data/opt/octoprint \
+  && mkdir -p /data/opt/octoprint \
   && tar xzf ${octoprint_ref}.tar.gz --strip-components 1 -C /data/opt/octoprint --no-same-owner
 
 WORKDIR /data/opt/octoprint
@@ -67,16 +65,16 @@ RUN mkdir -p /data/octoprint/octoprint /data/octoprint/plugins
 # Install mjpg-streamer
 RUN curl -fsSLO --compressed --retry 3 --retry-delay 10 \
   https://github.com/jacksonliam/mjpg-streamer/archive/master.tar.gz \
-  && mkdir /data/mjpg \
-  && tar xzf master.tar.gz -C /data/mjpg
+  && mkdir /mjpg \
+  && tar xzf master.tar.gz -C /mjpg
 
 
-WORKDIR /data/mjpg/mjpg-streamer-master/mjpg-streamer-experimental
+WORKDIR /mjpg/mjpg-streamer-master/mjpg-streamer-experimental
 RUN make
 RUN make install
 
 # Copy services into s6 servicedir and set default ENV vars
-COPY root /data/
+COPY root /
 ENV CAMERA_DEV /dev/video10
 ENV MJPG_STREAMER_INPUT -n -r 640x480
 ENV PIP_USER true
@@ -88,6 +86,6 @@ WORKDIR /data
 # port to access haproxy frontend
 EXPOSE 80
 
-VOLUME /data
+#VOLUME /octoprint
 
 ENTRYPOINT ["/init"]
