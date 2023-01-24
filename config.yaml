@@ -2,7 +2,7 @@
 name: Octopi
 version: dev
 slug: octopi
-description: test my Add-ons
+description: Octopi Add-ons
 url: https://github.com/al1moz/test24012023
 codenotary: codenotary@frenck.dev
 init: false
