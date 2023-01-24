@@ -62,7 +62,7 @@ RUN	curl -fsSLO --compressed --retry 3 --retry-delay 10 \
 
 WORKDIR /data/opt/octoprint
 RUN pip install .
-RUN mkdir -p /data/octoprint/octoprint /data/octoprint/plugins /data/mjpg
+RUN mkdir -p /data/octoprint/octoprint /data/octoprint/plugins
 
 # Install mjpg-streamer
 RUN curl -fsSLO --compressed --retry 3 --retry-delay 10 \
