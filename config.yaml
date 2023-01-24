@@ -14,9 +14,9 @@ arch:
   - armv7
   - i386
 host_network: true
+video: true
 devices:
   - /dev/ttyUSB0
-  - /dev/video0
 options:
   log_level: info
   seconds_between_quotes: 5
