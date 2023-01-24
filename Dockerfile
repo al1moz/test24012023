@@ -84,7 +84,7 @@ ENV PATH "${PYTHONUSERBASE}/bin:${PATH}"
 WORKDIR /octoprint
 
 # port to access haproxy frontend
-EXPOSE 8080
+EXPOSE 80
 
 VOLUME /octoprint
 
