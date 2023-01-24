@@ -53,7 +53,7 @@ RUN s6tar=$(find /tmp -name "s6-overlay-*.tar.gz") \
   && tar xzf $s6tar -C / 
 
 # Install octoprint
-VOLUME /data
+WORKDIR /data
 
 RUN curl -fsSLO --compressed --retry 3 --retry-delay 10 \
   https://github.com/OctoPrint/OctoPrint/archive/${octoprint_ref}.tar.gz \
@@ -84,7 +84,7 @@ ENV PYTHONUSERBASE /data/octoprint/plugins
 ENV PATH "${PYTHONUSERBASE}/bin:${PATH}"
 # set WORKDIR 
 WORKDIR /data
-
+VOLUME /data
 
 # port to access haproxy frontend
 EXPOSE 80
