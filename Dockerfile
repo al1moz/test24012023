@@ -81,7 +81,7 @@ ENV PIP_USER true
 ENV PYTHONUSERBASE /octoprint/plugins
 ENV PATH "${PYTHONUSERBASE}/bin:${PATH}"
 # set WORKDIR 
-WORKDIR /octoprint
+WORKDIR /data
 
 # port to access haproxy frontend
 EXPOSE 80
