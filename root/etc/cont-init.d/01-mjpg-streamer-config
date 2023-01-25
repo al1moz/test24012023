@@ -1,6 +1,6 @@
 #!/usr/bin/with-contenv bash
 
-: "${ENABLE_MJPG_STREAMER:=false}"
+: "${ENABLE_MJPG_STREAMER:=true}"
 
 # disable mjpg-streamer service if not enabled
 if ! $ENABLE_MJPG_STREAMER; then
