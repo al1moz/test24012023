@@ -55,10 +55,10 @@ RUN s6tar=$(find /tmp -name "s6-overlay-*.tar.gz") \
 # Install octoprint
 RUN curl -fsSLO --compressed --retry 3 --retry-delay 10 \
   https://github.com/OctoPrint/OctoPrint/archive/${octoprint_ref}.tar.gz \
-  && mkdir -p /data/opt/octoprint \
-  && tar xzf ${octoprint_ref}.tar.gz --strip-components 1 -C /data/opt/octoprint --no-same-owner
+  && mkdir -p /opt/octoprint \
+  && tar xzf ${octoprint_ref}.tar.gz --strip-components 1 -C /opt/octoprint --no-same-owner
 
-WORKDIR /data/opt/octoprint
+WORKDIR /opt/octoprint
 RUN pip install .
 RUN mkdir -p /data/octoprint/octoprint /data/octoprint/plugins
 
