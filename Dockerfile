@@ -56,7 +56,7 @@ RUN s6tar=$(find /tmp -name "s6-overlay-*.tar.gz") \
 RUN curl -fsSLO --compressed --retry 3 --retry-delay 10 \
   https://github.com/OctoPrint/OctoPrint/archive/refs/tags/1.8.6.tar.gz \
   && mkdir -p /opt/octoprint \
-  && tar xzf ${octoprint_ref}.tar.gz --strip-components 1 -C /opt/octoprint --no-same-owner
+  && tar xzf 1.8.6.tar.gz --strip-components 1 -C /opt/octoprint --no-same-owner
 
 WORKDIR /opt/octoprint
 RUN pip install .
