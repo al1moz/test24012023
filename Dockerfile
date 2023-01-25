@@ -75,7 +75,7 @@ RUN make install
 
 # Copy services into s6 servicedir and set default ENV vars
 COPY root /
-ENV CAMERA_DEV /dev/video10
+ENV CAMERA_DEV /dev/video0
 ENV MJPG_STREAMER_INPUT -n -r 640x480
 ENV PIP_USER true
 ENV PYTHONUSERBASE /data/octoprint/plugins
