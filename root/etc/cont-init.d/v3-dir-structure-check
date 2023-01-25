@@ -4,17 +4,17 @@
 
 if $AUTOMIGRATE; then
   echo "AUTOMIGATE enabled...."
-  if [[ -d "/octoprint/data" ]] || [[ -f "/octoprint/config.yaml" ]]; then
+  if [[ -d "/data/octoprint/data" ]] || [[ -f "/data/octoprint/config.yaml" ]]; then
     echo "octoprint-docker v2 directory structure detected...."
     echo "migrating to octoprint-docker v3 directory structure..."
-    mkdir -p /octoprint/octoprint /octoprint/plugins
-    mv /octoprint/* /octoprint/octoprint
+    mkdir -p /data/octoprint/octoprint /data/octoprint/plugins
+    mv /data/octoprint/* /data/octoprint/octoprint
 
-    [[ -d "/octoprint/octoprint/plugins/bin" ]] && mv /octoprint/octoprint/plugins/bin $PYTHONUSERBASE
-    [[ -d "/octoprint/octoprint/plugins/lib" ]] && mv /octoprint/octoprint/plugins/lib $PYTHONUSERBASE
-    [[ -d "/octoprint/octoprint/plugins/include" ]] && mv /octoprint/octoprint/plugins/include $PYTHONUSERBASE
-    [[ -d "/octoprint/octoprint/plugins/local" ]] && mv /octoprint/octoprint/plugins/local $PYTHONUSERBASE
-    [[ -d "/octoprint/octoprint/plugins/share" ]] && mv /octoprint/octoprint/plugins/share $PYTHONUSERBASE
+    [[ -d "/data/octoprint/octoprint/plugins/bin" ]] && mv /data/octoprint/octoprint/plugins/bin $PYTHONUSERBASE
+    [[ -d "/data/octoprint/octoprint/plugins/lib" ]] && mv /data/octoprint/octoprint/plugins/lib $PYTHONUSERBASE
+    [[ -d "/data/octoprint/octoprint/plugins/include" ]] && mv /data/octoprint/octoprint/plugins/include $PYTHONUSERBASE
+    [[ -d "/data/octoprint/octoprint/plugins/local" ]] && mv /data/octoprint/octoprint/plugins/local $PYTHONUSERBASE
+    [[ -d "/data/octoprint/octoprint/plugins/share" ]] && mv /data/octoprint/octoprint/plugins/share $PYTHONUSERBASE
 
     echo "v2 -> v3 octoprint-docker auto-migration migration complete!"
   fi
@@ -23,14 +23,14 @@ if $AUTOMIGRATE; then
     echo "octoprint-docker v1 directory structure detected...."
     echo "migrating to octoprint-docker v3 directory structure..."
 
-    mkdir -p /octoprint/octoprint /octoprint/plugins
-    mv /root/.octoprint/* /octoprint/octoprint
+    mkdir -p /data/octoprint/octoprint /data/octoprint/plugins
+    mv /root/.octoprint/* /data/octoprint/octoprint
 
-    [[ -d "/octoprint/octoprint/plugins/bin" ]] && mv /octoprint/octoprint/plugins/bin $PYTHONUSERBASE
-    [[ -d "/octoprint/octoprint/plugins/lib" ]] && mv /octoprint/octoprint/plugins/lib $PYTHONUSERBASE
-    [[ -d "/octoprint/octoprint/plugins/include" ]] && mv /octoprint/octoprint/plugins/include $PYTHONUSERBASE
-    [[ -d "/octoprint/octoprint/plugins/local" ]] && mv /octoprint/octoprint/plugins/local $PYTHONUSERBASE
-    [[ -d "/octoprint/octoprint/plugins/share" ]] && mv /octoprint/octoprint/plugins/share $PYTHONUSERBASE
+    [[ -d "/data/octoprint/octoprint/plugins/bin" ]] && mv /odata/ctoprint/octoprint/plugins/bin $PYTHONUSERBASE
+    [[ -d "/data/octoprint/octoprint/plugins/lib" ]] && mv /data/octoprint/octoprint/plugins/lib $PYTHONUSERBASE
+    [[ -d "/data/octoprint/octoprint/plugins/include" ]] && mv /data/octoprint/octoprint/plugins/include $PYTHONUSERBASE
+    [[ -d "/data/octoprint/octoprint/plugins/local" ]] && mv /data/octoprint/octoprint/plugins/local $PYTHONUSERBASE
+    [[ -d "/data/octoprint/octoprint/plugins/share" ]] && mv /data/octoprint/octoprint/plugins/share $PYTHONUSERBASE
 
     echo "v1 -> v3 octoprint-docker auto-migration complete!"
   fi
