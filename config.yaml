@@ -1,7 +1,7 @@
 
 ---
 name: Octopi
-version: "0.3.0.2"
+version: "0.3.0.3"
 slug: octopi
 description: Octopi Add-ons
 url: https://github.com/al1moz/test24012023
@@ -16,7 +16,7 @@ arch:
 host_network: true
 video: true
 devices:
-  - /dev/ttyUSB0
+  - /dev/ttyUSB0:/dev/ttyUSB0
 options:
   log_level: info
   seconds_between_quotes: 5
